@@ -55,11 +55,11 @@ const metrics = [
 ];
 
 const partners = [
-  { name: "Microsoft", img: "/static/doitac1.png" },
-  { name: "Google", img: "/static/doitac2.png" },
-  { name: "Amazon", img: "/static/doitac3.png" },
-  { name: "IBM", img: "/static/doitac4.png" },
-  { name: "Tesla", img: "/static/doitac5.png" },
+  { img: "/static/doitac1.png" },
+  { img: "/static/doitac2.png" },
+  { img: "/static/doitac3.png" },
+  { img: "/static/doitac4.png" },
+  { img: "/static/doitac5.png" },
 ];
 
 export default function QualityAssurance() {
@@ -125,14 +125,17 @@ export default function QualityAssurance() {
                 </p>
                 <h4 className="font-semibold mb-4">Đối tác doanh nghiệp</h4>
                 <div className="flex flex-wrap gap-2">
-                  {partners.map((p) => (
+                  {partners.map((p, idx) => (
                     <Badge
-                      key={p.name}
+                      key={p.img}
                       variant="secondary"
-                      className="flex items-center gap-2 px-3 py-2"
+                      className="flex items-center justify-center px-3 py-2"
                     >
-                      <img src={p.img} alt={p.name} className="h-6 w-auto" />
-                      <span>{p.name}</span>
+                      <img
+                        src={p.img}
+                        alt="Đối tác doanh nghiệp"
+                        className="h-10 w-auto"
+                      />
                     </Badge>
                   ))}
                 </div>

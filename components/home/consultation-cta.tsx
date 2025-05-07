@@ -30,12 +30,13 @@ export default function ConsultationCTA() {
             </Badge>
 
             <h2 className="text-4xl font-bold leading-tight">
-              Khởi đầu hành trình thành công cùng Khoa Kinh tế
+              Khởi đầu hành trình thành công cùng Đại học Mở Hà Nội
             </h2>
 
             <p className="text-lg text-muted-foreground">
-              Đặt lịch tư vấn cá nhân với đội ngũ chuyên gia để định hướng ngành
-              học phù hợp và khám phá cơ hội phát triển tương lai.
+              Đặt lịch tư vấn với đội ngũ chuyên gia của Trường Đại học Mở Hà
+              Nội để được định hướng ngành học phù hợp, giải đáp thắc mắc về
+              tuyển sinh, chương trình đào tạo và cơ hội nghề nghiệp.
             </p>
 
             <div className="grid gap-6">
@@ -46,9 +47,11 @@ export default function ConsultationCTA() {
                       <Users className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg">Expert Advisors</CardTitle>
+                      <CardTitle className="text-lg">
+                        Đội ngũ tư vấn chuyên nghiệp
+                      </CardTitle>
                       <CardDescription>
-                        Đội ngũ tư vấn tận tâm, đồng hành cùng bạn
+                        Giàu kinh nghiệm, tận tâm hỗ trợ thí sinh và phụ huynh
                       </CardDescription>
                     </div>
                   </div>
@@ -66,7 +69,7 @@ export default function ConsultationCTA() {
                         Lịch hẹn linh hoạt
                       </CardTitle>
                       <CardDescription>
-                        Chủ động chọn thời gian phù hợp
+                        Chủ động chọn thời gian tư vấn phù hợp
                       </CardDescription>
                     </div>
                   </div>
@@ -81,10 +84,11 @@ export default function ConsultationCTA() {
                     </div>
                     <div>
                       <CardTitle className="text-lg">
-                        Nhiều hình thức tư vấn
+                        Đa dạng hình thức tư vấn
                       </CardTitle>
                       <CardDescription>
-                        Trực tiếp, trực tuyến hoặc qua điện thoại
+                        Tư vấn trực tiếp tại trường, trực tuyến hoặc qua điện
+                        thoại
                       </CardDescription>
                     </div>
                   </div>
@@ -101,9 +105,12 @@ export default function ConsultationCTA() {
           >
             <Card className="backdrop-blur-sm">
               <CardHeader className="space-y-1 text-center pb-2">
-                <CardTitle className="text-2xl">Đặt lịch tư vấn</CardTitle>
+                <CardTitle className="text-2xl">
+                  Đăng ký tư vấn tuyển sinh
+                </CardTitle>
                 <CardDescription>
-                  Bước đầu tiên cho tương lai của bạn
+                  Hãy để Đại học Mở Hà Nội đồng hành cùng bạn trên con đường học
+                  tập
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -111,9 +118,9 @@ export default function ConsultationCTA() {
                   <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
                     <Calendar className="h-5 w-5 text-primary" />
                     <div className="text-sm">
-                      <p className="font-medium">Flexible Appointments</p>
+                      <p className="font-medium">Lịch tư vấn linh hoạt</p>
                       <p className="text-muted-foreground">
-                        Thứ 2 - Thứ 6, 9h00 - 17h00
+                        Thứ 2 - Thứ 6, 9h00 - 17h00 (hoặc theo lịch hẹn riêng)
                       </p>
                     </div>
                   </div>
@@ -121,9 +128,9 @@ export default function ConsultationCTA() {
                   <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
                     <Clock className="h-5 w-5 text-primary" />
                     <div className="text-sm">
-                      <p className="font-medium">30-Minute Sessions</p>
+                      <p className="font-medium">Thời lượng tư vấn hợp lý</p>
                       <p className="text-muted-foreground">
-                        Tư vấn tập trung, hiệu quả
+                        Mỗi buổi tư vấn khoảng 30 phút, tập trung và hiệu quả
                       </p>
                     </div>
                   </div>
@@ -131,9 +138,10 @@ export default function ConsultationCTA() {
                   <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
                     <Phone className="h-5 w-5 text-primary" />
                     <div className="text-sm">
-                      <p className="font-medium">Direct Support</p>
+                      <p className="font-medium">Hỗ trợ trực tiếp</p>
                       <p className="text-muted-foreground">
-                        Hỗ trợ nhanh chóng, tận tình
+                        Đội ngũ tư vấn luôn sẵn sàng hỗ trợ, giải đáp mọi thắc
+                        mắc
                       </p>
                     </div>
                   </div>
@@ -141,13 +149,13 @@ export default function ConsultationCTA() {
 
                 <Button size="lg" className="w-full group" asChild>
                   <Link href="/hen-tu-van">
-                    Đặt lịch ngay
+                    Đăng ký tư vấn ngay
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
 
                 <p className="text-center text-sm text-muted-foreground">
-                  Hoàn toàn miễn phí • Không ràng buộc
+                  Miễn phí 100% • Không ràng buộc
                 </p>
               </CardContent>
             </Card>

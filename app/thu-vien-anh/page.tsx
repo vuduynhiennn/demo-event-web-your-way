@@ -44,6 +44,30 @@ const galleryImages = [
     alt: "Tiết học công dân giữa khoá",
     category: "Năng lực",
   },
+  {
+    id: 7,
+    src: "/static/sukien1.jpg",
+    alt: "Kỉ niệm 30 năm thành lập Đại học Mở Hà Nội",
+    category: "Sự kiện",
+  },
+  {
+    id: 8,
+    src: "/static/sukien2.jpg",
+    alt: "Diễn đàn sinh viên khởi nghiệp",
+    category: "Khởi nghiệp",
+  },
+  {
+    id: 9,
+    src: "/static/sukien3.jpg",
+    alt: "Hội thảo triển lãm du học Mỹ",
+    category: "Du học",
+  },
+  {
+    id: 10,
+    src: "/static/sukien4.jpeg",
+    alt: "Cuộc thi olympic tin học, tiếng Anh",
+    category: "Cuộc thi",
+  },
 ];
 
 type ImageType = {

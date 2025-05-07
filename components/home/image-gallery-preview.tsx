@@ -82,7 +82,7 @@ export default function ImageGalleryPreview() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-4 md:px-8">
           {galleryImages.map((image, index) => (
             <motion.div
               key={image.id}
@@ -90,12 +90,12 @@ export default function ImageGalleryPreview() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`group overflow-hidden rounded-2xl shadow-lg relative bg-white`}
+              className={`group overflow-hidden rounded-2xl shadow-xl relative bg-white h-80 md:h-96`}
             >
               <Dialog>
                 <DialogTrigger asChild>
                   <div
-                    className="cursor-pointer relative aspect-[16/10]"
+                    className="cursor-pointer relative h-full"
                     onClick={() => {
                       setSelectedImage(image);
                       setCurrentIndex(index);
@@ -114,10 +114,10 @@ export default function ImageGalleryPreview() {
                     </div>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="max-w-3xl flex flex-col items-center">
-                  <div className="relative w-full aspect-[16/9] flex items-center justify-center">
+                <DialogContent className="max-w-5xl p-0 bg-black/90 border-none flex flex-col items-center justify-center overflow-hidden">
+                  <div className="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center">
                     <button
-                      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-primary/80 text-primary hover:text-white rounded-full p-2 shadow-md"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 shadow-lg transition-all duration-200"
                       onClick={() => {
                         const prev =
                           (currentIndex - 1 + galleryImages.length) %
@@ -127,18 +127,26 @@ export default function ImageGalleryPreview() {
                       }}
                       aria-label="Trước"
                     >
-                      <ChevronLeft className="w-6 h-6" />
+                      <ChevronLeft className="w-8 h-8" />
                     </button>
                     {selectedImage && (
-                      <Image
-                        src={selectedImage.src}
-                        alt={selectedImage.alt}
-                        fill
-                        className="object-contain rounded-xl"
-                      />
+                      <motion.div
+                        key={selectedImage.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-full h-full flex items-center justify-center"
+                      >
+                        <Image
+                          src={selectedImage.src}
+                          alt={selectedImage.alt}
+                          fill
+                          className="object-contain rounded-xl"
+                        />
+                      </motion.div>
                     )}
                     <button
-                      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-primary/80 text-primary hover:text-white rounded-full p-2 shadow-md"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 shadow-lg transition-all duration-200"
                       onClick={() => {
                         const next = (currentIndex + 1) % galleryImages.length;
                         setSelectedImage(galleryImages[next]);
@@ -146,15 +154,23 @@ export default function ImageGalleryPreview() {
                       }}
                       aria-label="Tiếp"
                     >
-                      <ChevronRight className="w-6 h-6" />
+                      <ChevronRight className="w-8 h-8" />
                     </button>
                   </div>
-                  <p className="text-center mt-4 text-lg font-semibold">
-                    {selectedImage?.alt}{" "}
-                    <Badge variant="outline" className="ml-2">
-                      {selectedImage?.category}
-                    </Badge>
-                  </p>
+                  <div className="absolute bottom-4 left-0 right-0 text-center p-4 bg-gradient-to-t from-black/70 to-transparent">
+                    <p className="text-white text-lg font-semibold drop-shadow-lg">
+                      {selectedImage?.alt}{" "}
+                      <Badge
+                        variant="secondary"
+                        className="ml-2 bg-white/30 text-white border-none"
+                      >
+                        {selectedImage?.category}
+                      </Badge>
+                    </p>
+                    <div className="mt-2 text-sm text-white/70">
+                      {currentIndex + 1} / {galleryImages.length}
+                    </div>
+                  </div>
                 </DialogContent>
               </Dialog>
             </motion.div>
