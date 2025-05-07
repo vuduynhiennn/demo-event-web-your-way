@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { GraduationCap, BookOpen, Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import Logo from "../ui/logo";
 
 const HeaderLinks = [
   { name: "Home", href: "/" },
@@ -47,10 +48,7 @@ export default function Header() {
       )}
     >
       <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-2">
-          <GraduationCap className="h-8 w-8 text-primary" />
-          <span className="font-bold text-xl">Excellence Academy</span>
-        </div>
+        <Logo />
 
         {/* Desktop Navigation */}
         <NavigationMenu className="hidden md:flex">
@@ -61,7 +59,8 @@ export default function Header() {
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),
-                      pathname === link.href && "bg-accent text-accent-foreground"
+                      pathname === link.href &&
+                        "bg-accent text-accent-foreground"
                     )}
                   >
                     {link.name}
@@ -93,7 +92,9 @@ export default function Header() {
                     href={link.href}
                     className={cn(
                       "group flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                      pathname === link.href ? "bg-accent text-accent-foreground" : "transparent"
+                      pathname === link.href
+                        ? "bg-accent text-accent-foreground"
+                        : "transparent"
                     )}
                   >
                     {link.name}

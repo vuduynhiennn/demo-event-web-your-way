@@ -12,44 +12,51 @@ import Link from "next/link";
 const galleryImages = [
   {
     id: 1,
-    src: "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Modern campus building with glass facade",
-    category: "facilities"
+    src: "/static/ga.png",
+    alt: "Buổi học thực tế của sinh viên",
+    category: "Trải nghiệm",
   },
   {
     id: 2,
-    src: "https://images.pexels.com/photos/256541/pexels-photo-256541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Students collaborating in library",
-    category: "campus"
+    src: "/static/ga1.jpg",
+    alt: "Tiết học tại khu học tập quân sự",
+    category: "Học tập",
   },
   {
     id: 3,
-    src: "https://images.pexels.com/photos/1438072/pexels-photo-1438072.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Graduation ceremony",
-    category: "events"
+    src: "/static/ga2.png",
+    alt: "Khoa kinh tế trường đại học Mở Hà Nội",
+    category: "Khoa kinh tế",
   },
   {
     id: 4,
-    src: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Science laboratory with modern equipment",
-    category: "facilities"
+    src: "/static/ga4.png",
+    alt: "Sinh viên thảo luận sôi nổi",
+    category: "Năng động",
   },
   {
     id: 5,
-    src: "https://images.pexels.com/photos/7092613/pexels-photo-7092613.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "Student club meeting",
-    category: "activities"
+    src: "/static/ga5.jpeg",
+    alt: "Phòng thực hành máy tính",
+    category: "Hiện đại",
   },
   {
     id: 6,
-    src: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    alt: "International cultural festival",
-    category: "events"
+    src: "/static/ga6.jpeg",
+    alt: "Tiết học công dân giữa khoá",
+    category: "Năng lực",
   },
 ];
 
+type ImageType = {
+  id: number;
+  src: string;
+  alt: string;
+  category: string;
+};
+
 export default function ImageGalleryPreview() {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
 
   return (
     <section className="py-16 bg-background">
@@ -61,10 +68,15 @@ export default function ImageGalleryPreview() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <Badge variant="outline" className="mb-2">Campus Life</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience Excellence Academy</h2>
+            <Badge variant="outline" className="mb-2">
+              Campus Life
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Experience Excellence Academy
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Take a visual journey through our campus, facilities, events, and student activities.
+              Take a visual journey through our campus, facilities, events, and
+              student activities.
             </p>
           </motion.div>
         </div>
@@ -83,7 +95,7 @@ export default function ImageGalleryPreview() {
             >
               <Dialog>
                 <DialogTrigger asChild>
-                  <div 
+                  <div
                     className="cursor-pointer relative aspect-[4/3]"
                     onClick={() => setSelectedImage(image)}
                   >
