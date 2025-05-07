@@ -31,7 +31,7 @@ const programs = [
       "Kế toán là công việc thu thập và xử lý dữ liệu kinh doanh, tài chính của tổ chức để cung cấp thông tin cho việc ra quyết định quản lý. Chương trình Cử nhân Kế toán cung cấp kiến thức nền tảng về kinh tế, quản trị, tài chính và kỹ năng chuyên sâu về kế toán tài chính, kế toán quản trị, kiểm toán, thuế và hệ thống thông tin kế toán.",
     icon: <Code className="h-10 w-10 text-chart-1" />,
     badge: "Ngành học nổi bật",
-    link: "/programs/ke-toan",
+    link: "/chuong-trinh-hoc/ke-toan",
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ const programs = [
       "Ngành Quản trị kinh doanh chuẩn bị cho người học năng lực quản lý các loại hình tổ chức khác nhau, từ doanh nghiệp đến khu vực công, với kiến thức nền tảng về kinh tế, xã hội và kỹ năng chuyên sâu về quản trị các lĩnh vực.",
     icon: <Lightbulb className="h-10 w-10 text-chart-2" />,
     badge: "Định hướng ứng dụng",
-    link: "/programs/quan-tri-kinh-doanh",
+    link: "/chuong-trinh-hoc/quan-tri-kinh-doanh",
   },
   {
     id: 3,
@@ -49,7 +49,7 @@ const programs = [
       "Ngành Thương mại điện tử trang bị cho sinh viên khả năng phát huy sáng tạo, tư duy kinh doanh online, kỹ năng ứng dụng công nghệ vào kinh doanh và kiến thức vận hành các nền tảng thương mại điện tử.",
     icon: <Globe className="h-10 w-10 text-chart-4" />,
     badge: "Xu hướng số hoá",
-    link: "/programs/thuong-mai-dien-tu",
+    link: "/chuong-trinh-hoc/thuong-mai-dien-tu",
   },
   {
     id: 4,
@@ -58,7 +58,7 @@ const programs = [
       "Analyze global issues, diplomacy, and cross-cultural communication in our interconnected world.",
     icon: <Globe className="h-10 w-10 text-chart-4" />,
     badge: "Global Impact",
-    link: "/programs/international-relations",
+    link: "/chuong-trinh-hoc/international-relations",
   },
   {
     id: 5,
@@ -67,7 +67,7 @@ const programs = [
       "Develop your artistic talents and creative thinking in a supportive, inspiring environment.",
     icon: <Palette className="h-10 w-10 text-chart-5" />,
     badge: "Creative Focus",
-    link: "/programs/creative-arts",
+    link: "/chuong-trinh-hoc/creative-arts",
   },
   {
     id: 6,
@@ -76,7 +76,7 @@ const programs = [
       "Prepare for a rewarding career shaping the next generation of learners and leaders.",
     icon: <BookOpen className="h-10 w-10 text-chart-1" />,
     badge: "Community Impact",
-    link: "/programs/education",
+    link: "/chuong-trinh-hoc/education",
   },
 ];
 
@@ -143,7 +143,7 @@ export default function FeaturedPrograms() {
 
         <div className="flex justify-center mt-12">
           <Button size="lg" asChild>
-            <Link href="/programs">Xem tất cả ngành học</Link>
+            <Link href="/chuong-trinh-hoc">Xem tất cả ngành học</Link>
           </Button>
         </div>
       </div>

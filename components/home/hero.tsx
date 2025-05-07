@@ -66,7 +66,7 @@ export default function Hero() {
                   className="bg-white/70 backdrop-blur-sm text-black text-lg uppercase hover:bg-white"
                   asChild
                 >
-                  <Link href="/programs">Tìm hiểu các ngành học</Link>
+                  <Link href="/chuong-trinh-hoc">Tìm hiểu các ngành học</Link>
                 </Button>
               </motion.div>
             </>

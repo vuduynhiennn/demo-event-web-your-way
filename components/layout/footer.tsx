@@ -48,7 +48,7 @@ const Footer = () => {
           <ul className="space-y-2">
             <li>
               <Link
-                href="/programs/ke-toan"
+                href="/chuong-trinh-hoc/ke-toan"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Kế toán
@@ -56,7 +56,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/programs/quan-tri-kinh-doanh"
+                href="/chuong-trinh-hoc/quan-tri-kinh-doanh"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Quản trị kinh doanh
@@ -64,7 +64,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/programs/thuong-mai-dien-tu"
+                href="/chuong-trinh-hoc/thuong-mai-dien-tu"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Thương mại điện tử
@@ -72,7 +72,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/programs/online"
+                href="/chuong-trinh-hoc/online"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Online Learning
@@ -80,7 +80,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/programs/international"
+                href="/chuong-trinh-hoc/international"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 International Programs
