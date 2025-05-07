@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { articles } from "@/lib/articles";
 
 export type Article = {
   slug: string;
@@ -20,19 +21,15 @@ export type Article = {
   views: number;
 };
 
-interface ArticleCarouselProps {
-  articles: Article[];
-}
-
-export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
+export default function ArticleCarousel() {
   return (
-    <div className="w-full">
+    <div className="container w-full">
       <Carousel opts={{ align: "start" }} className="w-full">
         <CarouselContent className="-ml-2">
-          {articles.map((article) => (
+          {articles.slice(0, 4).map((article) => (
             <CarouselItem
               key={article.slug}
-              className="pl-2 basis-4/12 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+              className="pl-2 w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 flex-shrink-0"
             >
               <div className="bg-card rounded-lg shadow-sm overflow-hidden flex flex-col h-full border hover:border-primary/50 transition-colors">
                 <div className="relative w-full h-40">
