@@ -342,6 +342,9 @@ export default function GioiThieu() {
                 <Mail className="w-5 h-5 text-primary" />
                 <span>mhn@hou.edu.vn</span>
               </div>
+              <div className="flex items-center gap-2 mt-2">
+                <span>Thời gian làm việc: Thứ 2 - Thứ 6, 8:00 - 17:00</span>
+              </div>
             </CardContent>
           </Card>
           <Card className="bg-card/80">

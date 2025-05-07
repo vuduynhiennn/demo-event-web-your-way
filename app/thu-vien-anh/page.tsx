@@ -68,6 +68,54 @@ const galleryImages = [
     alt: "Cuộc thi olympic tin học, tiếng Anh",
     category: "Cuộc thi",
   },
+  {
+    id: 11,
+    src: "/static/sukien6.jpg",
+    alt: "Cuộc thi SV startup",
+    category: "Đội thi",
+  },
+  {
+    id: 12,
+    src: "/static/sukien7.jpg",
+    alt: "Hoạt động vệ sinh trường",
+    category: "Vệ sinh",
+  },
+  {
+    id: 13,
+    src: "/static/sukien8.jpg",
+    alt: "Đội ngũ giảng viên chuyên nghiệp, tâm huyết",
+    category: "Tâm huyết",
+  },
+  {
+    id: 14,
+    src: "/static/sukien9.jpg",
+    alt: "Sinh viên nghiên cứu khoa học",
+    category: "Nghiên cứu",
+  },
+  {
+    id: 15,
+    src: "/static/sukien10.jpg",
+    alt: "Sinh viên tham gia các hoạt động văn hóa",
+    category: "Văn hóa",
+  },
+  {
+    id: 16,
+    src: "/static/sukien11.jpg",
+    alt: "Cuộc thi tranh biện",
+    category: "Tranh biện",
+  },
+  {
+    id: 17,
+    src: "/static/sukien12.jpg",
+    alt: "Cuộc thi Bia dành cho sinh viên",
+    category: "Giải trí",
+  },
+  {
+    id: 18,
+    src: "/static/sukien13.jpg",
+    alt: "Chuỗi các hoạt động thể thao",
+    category: "Thể thao",
+  },
 ];
 
 type ImageType = {
@@ -136,10 +184,10 @@ export default function ThuVienAnh() {
                     </div>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="max-w-3xl flex flex-col items-center">
-                  <div className="relative w-full aspect-[16/9] flex items-center justify-center">
+                <DialogContent className="max-w-5xl p-0 bg-black/90 border-none flex flex-col items-center justify-center overflow-hidden">
+                  <div className="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center">
                     <button
-                      className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-primary/80 text-primary hover:text-white rounded-full p-2 shadow-md"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 shadow-lg transition-all duration-200"
                       onClick={() => {
                         const prev =
                           (currentIndex - 1 + galleryImages.length) %
@@ -149,18 +197,26 @@ export default function ThuVienAnh() {
                       }}
                       aria-label="Trước"
                     >
-                      <ChevronLeft className="w-6 h-6" />
+                      <ChevronLeft className="w-8 h-8" />
                     </button>
                     {selectedImage && (
-                      <Image
-                        src={selectedImage.src}
-                        alt={selectedImage.alt}
-                        fill
-                        className="object-contain rounded-xl"
-                      />
+                      <motion.div
+                        key={selectedImage.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-full h-full flex items-center justify-center"
+                      >
+                        <Image
+                          src={selectedImage.src}
+                          alt={selectedImage.alt}
+                          fill
+                          className="object-contain rounded-xl"
+                        />
+                      </motion.div>
                     )}
                     <button
-                      className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-primary/80 text-primary hover:text-white rounded-full p-2 shadow-md"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 shadow-lg transition-all duration-200"
                       onClick={() => {
                         const next = (currentIndex + 1) % galleryImages.length;
                         setSelectedImage(galleryImages[next]);
@@ -168,15 +224,23 @@ export default function ThuVienAnh() {
                       }}
                       aria-label="Tiếp"
                     >
-                      <ChevronRight className="w-6 h-6" />
+                      <ChevronRight className="w-8 h-8" />
                     </button>
                   </div>
-                  <p className="text-center mt-4 text-lg font-semibold">
-                    {selectedImage?.alt}{" "}
-                    <Badge variant="outline" className="ml-2">
-                      {selectedImage?.category}
-                    </Badge>
-                  </p>
+                  <div className="absolute bottom-4 left-0 right-0 text-center p-4 bg-gradient-to-t from-black/70 to-transparent">
+                    <p className="text-white text-lg font-semibold drop-shadow-lg">
+                      {selectedImage?.alt}{" "}
+                      <Badge
+                        variant="secondary"
+                        className="ml-2 bg-white/30 text-white border-none"
+                      >
+                        {selectedImage?.category}
+                      </Badge>
+                    </p>
+                    <div className="mt-2 text-sm text-white/70">
+                      {currentIndex + 1} / {galleryImages.length}
+                    </div>
+                  </div>
                 </DialogContent>
               </Dialog>
             </motion.div>

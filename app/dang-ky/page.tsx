@@ -44,59 +44,76 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { motion } from "@/lib/motion";
 
 const personalInfoSchema = z.object({
-  fullName: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  birthdate: z.string().min(1, "Please enter your date of birth"),
-  address: z.string().min(5, "Please enter your address"),
+  fullName: z.string().min(2, "Họ và tên phải có ít nhất 2 ký tự"),
+  email: z.string().email("Vui lòng nhập địa chỉ email hợp lệ"),
+  phone: z.string().optional(),
+  birthdate: z.string().optional(),
+  address: z.string().optional(),
 });
 
 const programSelectionSchema = z.object({
-  program: z.string().min(1, "Please select a program"),
-  startDate: z.string().min(1, "Please select a preferred start date"),
+  program: z.string().min(1, "Vui lòng chọn một chương trình"),
+  startDate: z.string().min(1, "Vui lòng chọn ngày bắt đầu mong muốn"),
   studyFormat: z.enum(["fullTime", "partTime", "online"], {
-    required_error: "Please select a study format",
+    required_error: "Vui lòng chọn hình thức học",
   }),
 });
 
 const additionalInfoSchema = z.object({
-  education: z.string().min(1, "Please select your highest education level"),
-  howDidYouHear: z.string().min(1, "Please tell us how you heard about us"),
+  education: z.string().min(1, "Vui lòng chọn trình độ học vấn cao nhất"),
+  howDidYouHear: z
+    .string()
+    .min(1, "Vui lòng cho chúng tôi biết bạn biết đến chúng tôi qua đâu"),
   additionalComments: z.string().optional(),
 });
 
 const programs = [
-  "Computer Science",
-  "Business Administration",
-  "Biological Sciences",
-  "International Relations",
-  "Creative Arts",
-  "Education & Teaching",
+  "Thiết Kế Đồ Họa",
+  "Thiết Kế Thời Trang",
+  "Thiết Kế Nội Thất",
+  "Công Nghệ Thông Tin",
+  "Công Nghệ Kỹ Thuật Điện Tử - Viễn Thông",
+  "Công Nghệ Kỹ Thuật Điều Khiển và Tự Động Hóa",
+  "Quản Trị Kinh Doanh",
+  "Kế Toán",
+  "Thương Mại Điện Tử",
+  "Tài Chính - Ngân Hàng",
+  "Bảo Hiểm",
+  "Luật",
+  "Luật Kinh Tế",
+  "Luật Quốc Tế",
+  "Ngôn Ngữ Anh",
+  "Ngôn Ngữ Trung Quốc",
+  "Công Nghệ Sinh Học",
+  "Công Nghệ Thực Phẩm",
+  "Kiến Trúc",
+  "Quản Trị Dịch Vụ Du Lịch và Lữ Hành",
+  "Quản Trị Khách Sạn",
 ];
 
 const startDates = [
-  "Fall 2025 (September)",
-  "Winter 2026 (January)",
-  "Spring 2026 (May)",
-  "Summer 2026 (July)",
+  "Mùa Thu 2025 (Tháng 9)",
+  "Mùa Đông 2026 (Tháng 1)",
+  "Mùa Xuân 2026 (Tháng 5)",
+  "Mùa Hè 2026 (Tháng 7)",
 ];
 
 const educationLevels = [
-  "High School",
-  "Associate's Degree",
-  "Bachelor's Degree",
-  "Master's Degree",
-  "Doctorate",
+  "Trung Học Phổ Thông",
+  "Cao Đẳng",
+  "Cử Nhân",
+  "Thạc Sĩ",
+  "Tiến Sĩ",
 ];
 
 const referralSources = [
-  "Search Engine",
-  "Social Media",
-  "Friend/Family",
-  "Current Student/Alumni",
-  "Education Fair",
-  "Advertisement",
-  "Other",
+  "Công Cụ Tìm Kiếm",
+  "Mạng Xã Hội",
+  "Bạn Bè/Gia Đình",
+  "Sinh Viên Cũ/Cựu Sinh Viên",
+  "Hội Chợ Giáo Dục",
+  "Quảng Cáo",
+  "Khác",
 ];
 
 export default function RegisterPage() {
@@ -136,7 +153,7 @@ export default function RegisterPage() {
 
   const onPersonalInfoSubmit = (data: z.infer<typeof personalInfoSchema>) => {
     setSavedData((prev) => ({ ...prev, ...data }));
-    toast.success("Personal information saved!");
+    toast.success("Thông tin cá nhân đã được lưu!");
     setStep(2);
   };
 
@@ -144,7 +161,7 @@ export default function RegisterPage() {
     data: z.infer<typeof programSelectionSchema>
   ) => {
     setSavedData((prev) => ({ ...prev, ...data }));
-    toast.success("Program selection saved!");
+    toast.success("Lựa chọn chương trình đã được lưu!");
     setStep(3);
   };
 
@@ -158,10 +175,10 @@ export default function RegisterPage() {
       // Simulate form submission
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      toast.success("Application submitted successfully!");
+      toast.success("Đơn đăng ký đã được gửi thành công!");
       setStep(4);
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
+      toast.error("Đã xảy ra lỗi. Vui lòng thử lại.");
     } finally {
       setIsSubmitting(false);
     }
@@ -177,10 +194,10 @@ export default function RegisterPage() {
       >
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
-            Apply to Excellence Academy
+            Đăng Ký Vào Đại Học Mở Hà Nội
           </h1>
           <p className="text-muted-foreground">
-            Fill out the form below to start your application process
+            Điền vào mẫu dưới đây để bắt đầu quá trình đăng ký của bạn
           </p>
         </div>
 
@@ -192,24 +209,24 @@ export default function RegisterPage() {
                 disabled={step < 1}
                 onClick={() => step > 1 && setStep(1)}
               >
-                Personal Info
+                Thông Tin Cá Nhân
               </TabsTrigger>
               <TabsTrigger
                 value="2"
                 disabled={step < 2}
                 onClick={() => step > 2 && setStep(2)}
               >
-                Program Selection
+                Lựa Chọn Chương Trình
               </TabsTrigger>
               <TabsTrigger
                 value="3"
                 disabled={step < 3}
                 onClick={() => step > 3 && setStep(3)}
               >
-                Additional Info
+                Thông Tin Bổ Sung
               </TabsTrigger>
               <TabsTrigger value="4" disabled={step < 4}>
-                Confirmation
+                Xác Nhận
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -223,9 +240,9 @@ export default function RegisterPage() {
           >
             <Card>
               <CardHeader>
-                <CardTitle>Personal Information</CardTitle>
+                <CardTitle>Thông Tin Cá Nhân</CardTitle>
                 <CardDescription>
-                  Please provide your personal details below
+                  Vui lòng cung cấp thông tin cá nhân của bạn dưới đây
                 </CardDescription>
               </CardHeader>
               <Form {...personalInfoForm}>
@@ -238,9 +255,9 @@ export default function RegisterPage() {
                       name="fullName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
+                          <FormLabel>Họ và Tên</FormLabel>
                           <FormControl>
-                            <Input placeholder="John Doe" {...field} />
+                            <Input placeholder="Nguyễn Văn A" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -252,11 +269,11 @@ export default function RegisterPage() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Email Address</FormLabel>
+                            <FormLabel>Địa Chỉ Email</FormLabel>
                             <FormControl>
                               <Input
                                 type="email"
-                                placeholder="john.doe@example.com"
+                                placeholder="nguyen.van.a@example.com"
                                 {...field}
                               />
                             </FormControl>
@@ -269,9 +286,9 @@ export default function RegisterPage() {
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Phone Number</FormLabel>
+                            <FormLabel>Số Điện Thoại</FormLabel>
                             <FormControl>
-                              <Input placeholder="(555) 123-4567" {...field} />
+                              <Input placeholder="0123 456 789" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -283,7 +300,7 @@ export default function RegisterPage() {
                       name="birthdate"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Date of Birth</FormLabel>
+                          <FormLabel>Ngày Sinh</FormLabel>
                           <FormControl>
                             <Input type="date" {...field} />
                           </FormControl>
@@ -296,10 +313,10 @@ export default function RegisterPage() {
                       name="address"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Address</FormLabel>
+                          <FormLabel>Địa Chỉ</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="123 Main St, City, Country"
+                              placeholder="123 Đường Lê Lợi, Hà Nội, Việt Nam"
                               {...field}
                             />
                           </FormControl>
@@ -310,7 +327,7 @@ export default function RegisterPage() {
                   </CardContent>
                   <CardFooter className="flex justify-end">
                     <Button type="submit">
-                      Continue <ArrowRight className="ml-2 h-4 w-4" />
+                      Tiếp Tục <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </CardFooter>
                 </form>
@@ -327,9 +344,9 @@ export default function RegisterPage() {
           >
             <Card>
               <CardHeader>
-                <CardTitle>Program Selection</CardTitle>
+                <CardTitle>Lựa Chọn Chương Trình</CardTitle>
                 <CardDescription>
-                  Select your desired program and study preferences
+                  Chọn chương trình và hình thức học tập mong muốn của bạn
                 </CardDescription>
               </CardHeader>
               <Form {...programSelectionForm}>
@@ -344,14 +361,14 @@ export default function RegisterPage() {
                       name="program"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Program of Interest</FormLabel>
+                          <FormLabel>Chương Trình Quan Tâm</FormLabel>
                           <Select
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Select a program" />
+                                <SelectValue placeholder="Chọn một chương trình" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -371,14 +388,14 @@ export default function RegisterPage() {
                       name="startDate"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Preferred Start Date</FormLabel>
+                          <FormLabel>Ngày Bắt Đầu Ưa Thích</FormLabel>
                           <Select
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Select a start date" />
+                                <SelectValue placeholder="Chọn ngày bắt đầu" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -398,7 +415,7 @@ export default function RegisterPage() {
                       name="studyFormat"
                       render={({ field }) => (
                         <FormItem className="space-y-3">
-                          <FormLabel>Study Format</FormLabel>
+                          <FormLabel>Hình Thức Học</FormLabel>
                           <FormControl>
                             <RadioGroup
                               onValueChange={field.onChange}
@@ -410,7 +427,7 @@ export default function RegisterPage() {
                                   <RadioGroupItem value="fullTime" />
                                 </FormControl>
                                 <FormLabel className="font-normal">
-                                  Full-time
+                                  Toàn Thời Gian
                                 </FormLabel>
                               </FormItem>
                               <FormItem className="flex items-center space-x-3 space-y-0">
@@ -418,7 +435,7 @@ export default function RegisterPage() {
                                   <RadioGroupItem value="partTime" />
                                 </FormControl>
                                 <FormLabel className="font-normal">
-                                  Part-time
+                                  Bán Thời Gian
                                 </FormLabel>
                               </FormItem>
                               <FormItem className="flex items-center space-x-3 space-y-0">
@@ -426,7 +443,7 @@ export default function RegisterPage() {
                                   <RadioGroupItem value="online" />
                                 </FormControl>
                                 <FormLabel className="font-normal">
-                                  Online
+                                  Trực Tuyến
                                 </FormLabel>
                               </FormItem>
                             </RadioGroup>
@@ -442,10 +459,10 @@ export default function RegisterPage() {
                       variant="outline"
                       onClick={() => setStep(1)}
                     >
-                      <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                      <ArrowLeft className="mr-2 h-4 w-4" /> Quay Lại
                     </Button>
                     <Button type="submit">
-                      Continue <ArrowRight className="ml-2 h-4 w-4" />
+                      Tiếp Tục <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </CardFooter>
                 </form>
@@ -462,10 +479,10 @@ export default function RegisterPage() {
           >
             <Card>
               <CardHeader>
-                <CardTitle>Additional Information</CardTitle>
+                <CardTitle>Thông Tin Bổ Sung</CardTitle>
                 <CardDescription>
-                  Please provide some additional details to complete your
-                  application
+                  Vui lòng cung cấp một số thông tin bổ sung để hoàn tất đơn
+                  đăng ký của bạn
                 </CardDescription>
               </CardHeader>
               <Form {...additionalInfoForm}>
@@ -480,14 +497,14 @@ export default function RegisterPage() {
                       name="education"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Highest Level of Education</FormLabel>
+                          <FormLabel>Trình Độ Học Vấn Cao Nhất</FormLabel>
                           <Select
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Select education level" />
+                                <SelectValue placeholder="Chọn trình độ học vấn" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -507,14 +524,14 @@ export default function RegisterPage() {
                       name="howDidYouHear"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>How did you hear about us?</FormLabel>
+                          <FormLabel>Bạn Biết Đến Chúng Tôi Qua Đâu?</FormLabel>
                           <Select
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Select an option" />
+                                <SelectValue placeholder="Chọn một lựa chọn" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -534,10 +551,12 @@ export default function RegisterPage() {
                       name="additionalComments"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Additional Comments (Optional)</FormLabel>
+                          <FormLabel>
+                            Ghi Chú Bổ Sung (Không Bắt Buộc)
+                          </FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="Any additional information you'd like to share"
+                              placeholder="Bất kỳ thông tin bổ sung nào bạn muốn chia sẻ"
                               {...field}
                             />
                           </FormControl>
@@ -552,16 +571,16 @@ export default function RegisterPage() {
                       variant="outline"
                       onClick={() => setStep(2)}
                     >
-                      <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                      <ArrowLeft className="mr-2 h-4 w-4" /> Quay Lại
                     </Button>
                     <Button type="submit" disabled={isSubmitting}>
                       {isSubmitting ? (
                         <>
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />{" "}
-                          Submitting...
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Đang
+                          Gửi...
                         </>
                       ) : (
-                        <>Submit Application</>
+                        <>Gửi Đơn Đăng Ký</>
                       )}
                     </Button>
                   </CardFooter>
@@ -583,51 +602,51 @@ export default function RegisterPage() {
                   <CheckCircle2 className="h-16 w-16 text-primary" />
                 </div>
                 <CardTitle className="text-2xl">
-                  Application Submitted!
+                  Đơn Đăng Ký Đã Được Gửi!
                 </CardTitle>
                 <CardDescription>
-                  Thank you for applying to Excellence Academy
+                  Cảm ơn bạn đã đăng ký vào Đại Học Mở Hà Nội
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p>
-                  Your application has been successfully submitted. Our
-                  admissions team will review your information and contact you
-                  within 2-3 business days.
+                  Đơn đăng ký của bạn đã được gửi thành công. Đội ngũ tuyển sinh
+                  của chúng tôi sẽ xem xét thông tin của bạn và liên hệ với bạn
+                  trong vòng 2-3 ngày làm việc.
                 </p>
                 <div className="bg-muted p-4 rounded-lg">
-                  <p className="font-medium">Next Steps:</p>
+                  <p className="font-medium">Các Bước Tiếp Theo:</p>
                   <ul className="text-left mt-2 space-y-2">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                       <span>
-                        Check your email for a confirmation of your application
+                        Kiểm tra email của bạn để nhận xác nhận đơn đăng ký
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                       <span>
-                        Our admissions team will contact you to schedule an
-                        interview
+                        Đội ngũ tuyển sinh của chúng tôi sẽ liên hệ để sắp xếp
+                        lịch phỏng vấn
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Prepare any additional documents requested</span>
+                      <span>Chuẩn bị các tài liệu bổ sung theo yêu cầu</span>
                     </li>
                   </ul>
                 </div>
               </CardContent>
               <CardFooter className="flex justify-center gap-4">
                 <Button variant="outline" onClick={() => router.push("/")}>
-                  Return to Home
+                  Trở Về Trang Chủ
                 </Button>
                 <Button
                   onClick={() => router.push("/hen-tu-van")}
                   className="gap-2"
                 >
                   <Calendar className="h-4 w-4" />
-                  Book a Consultation
+                  Đặt Lịch Tư Vấn
                 </Button>
               </CardFooter>
             </Card>

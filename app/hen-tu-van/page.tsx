@@ -213,7 +213,9 @@ export default function ConsultationPage() {
                         <CardContent className="p-4">
                           <div className="flex items-center gap-3">
                             <div className="relative h-12 w-12 rounded-full overflow-hidden">
-                              <img
+                              <Image
+                                width={48}
+                                height={48}
                                 src={consultant.image}
                                 alt={consultant.name}
                                 className="object-cover"
@@ -240,6 +242,8 @@ export default function ConsultationPage() {
                   <div className="flex items-center gap-4">
                     <div className="relative h-16 w-16 rounded-full overflow-hidden">
                       <Image
+                        width={48}
+                        height={48}
                         src={selectedConsultant.image}
                         alt={selectedConsultant.name}
                         className="object-cover"
@@ -528,7 +532,9 @@ export default function ConsultationPage() {
                 <div className="max-w-sm mx-auto bg-muted p-6 rounded-lg">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="relative h-12 w-12 rounded-full overflow-hidden">
-                      <img
+                      <Image
+                        width={48}
+                        height={48}
                         src={selectedConsultant.image}
                         alt={selectedConsultant.name}
                         className="object-cover"
