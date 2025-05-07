@@ -19,11 +19,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "../ui/logo";
 
 const HeaderLinks = [
-  { name: "Home", href: "/" },
-  { name: "Programs", href: "/programs" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Testimonials", href: "/testimonials" },
-  { name: "About", href: "/about" },
+  { name: "Trang chủ", href: "/" },
+  { name: "Ngành học", href: "/programs" },
+  { name: "Thư viện ảnh", href: "/gallery" },
+  { name: "Cảm nhận", href: "/testimonials" },
+  { name: "Giới thiệu", href: "/about" },
 ];
 
 export default function Header() {
@@ -83,7 +83,9 @@ export default function Header() {
             <div className="grid gap-4 py-4">
               <div className="flex items-center gap-2 mb-8">
                 <GraduationCap className="h-6 w-6 text-primary" />
-                <span className="font-bold text-lg">Excellence Academy</span>
+                <span className="font-bold text-lg">
+                  Khoa Kinh tế - ĐH Mở Hà Nội
+                </span>
               </div>
               <nav className="grid gap-2">
                 {HeaderLinks.map((link) => (
@@ -102,7 +104,7 @@ export default function Header() {
                 ))}
                 <div className="mt-4">
                   <Button className="w-full" asChild>
-                    <Link href="/register">Apply Now</Link>
+                    <Link href="/register">Đăng ký ngay</Link>
                   </Button>
                 </div>
               </nav>
@@ -112,10 +114,10 @@ export default function Header() {
 
         <div className="hidden md:flex items-center gap-4">
           <Button asChild variant="outline">
-            <Link href="/consultation">Book Consultation</Link>
+            <Link href="/consultation">Đặt lịch tư vấn</Link>
           </Button>
           <Button asChild>
-            <Link href="/register">Apply Now</Link>
+            <Link href="/register">Đăng ký ngay</Link>
           </Button>
         </div>
       </div>

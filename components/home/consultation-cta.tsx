@@ -26,17 +26,16 @@ export default function ConsultationCTA() {
             className="space-y-8"
           >
             <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-0">
-              Expert Guidance
+              Tư vấn chuyên nghiệp
             </Badge>
 
             <h2 className="text-4xl font-bold leading-tight">
-              Start Your Journey to Excellence Today
+              Khởi đầu hành trình thành công cùng Khoa Kinh tế
             </h2>
 
             <p className="text-lg text-muted-foreground">
-              Schedule a personalized consultation with our expert advisors to
-              explore your educational path and discover the perfect program for
-              your aspirations.
+              Đặt lịch tư vấn cá nhân với đội ngũ chuyên gia để định hướng ngành
+              học phù hợp và khám phá cơ hội phát triển tương lai.
             </p>
 
             <div className="grid gap-6">
@@ -49,7 +48,7 @@ export default function ConsultationCTA() {
                     <div>
                       <CardTitle className="text-lg">Expert Advisors</CardTitle>
                       <CardDescription>
-                        Dedicated guidance for your success
+                        Đội ngũ tư vấn tận tâm, đồng hành cùng bạn
                       </CardDescription>
                     </div>
                   </div>
@@ -64,10 +63,10 @@ export default function ConsultationCTA() {
                     </div>
                     <div>
                       <CardTitle className="text-lg">
-                        Flexible Scheduling
+                        Lịch hẹn linh hoạt
                       </CardTitle>
                       <CardDescription>
-                        Choose a time that works for you
+                        Chủ động chọn thời gian phù hợp
                       </CardDescription>
                     </div>
                   </div>
@@ -82,10 +81,10 @@ export default function ConsultationCTA() {
                     </div>
                     <div>
                       <CardTitle className="text-lg">
-                        Multiple Formats
+                        Nhiều hình thức tư vấn
                       </CardTitle>
                       <CardDescription>
-                        In-person, virtual, or phone consultations
+                        Trực tiếp, trực tuyến hoặc qua điện thoại
                       </CardDescription>
                     </div>
                   </div>
@@ -102,11 +101,9 @@ export default function ConsultationCTA() {
           >
             <Card className="backdrop-blur-sm">
               <CardHeader className="space-y-1 text-center pb-2">
-                <CardTitle className="text-2xl">
-                  Book Your Consultation
-                </CardTitle>
+                <CardTitle className="text-2xl">Đặt lịch tư vấn</CardTitle>
                 <CardDescription>
-                  Take the first step towards your future
+                  Bước đầu tiên cho tương lai của bạn
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -116,7 +113,7 @@ export default function ConsultationCTA() {
                     <div className="text-sm">
                       <p className="font-medium">Flexible Appointments</p>
                       <p className="text-muted-foreground">
-                        Monday-Friday, 9AM-5PM
+                        Thứ 2 - Thứ 6, 9h00 - 17h00
                       </p>
                     </div>
                   </div>
@@ -126,7 +123,7 @@ export default function ConsultationCTA() {
                     <div className="text-sm">
                       <p className="font-medium">30-Minute Sessions</p>
                       <p className="text-muted-foreground">
-                        Focused on your needs
+                        Tư vấn tập trung, hiệu quả
                       </p>
                     </div>
                   </div>
@@ -136,7 +133,7 @@ export default function ConsultationCTA() {
                     <div className="text-sm">
                       <p className="font-medium">Direct Support</p>
                       <p className="text-muted-foreground">
-                        Get immediate answers
+                        Hỗ trợ nhanh chóng, tận tình
                       </p>
                     </div>
                   </div>
@@ -144,13 +141,13 @@ export default function ConsultationCTA() {
 
                 <Button size="lg" className="w-full group" asChild>
                   <Link href="/consultation">
-                    Schedule Now
+                    Đặt lịch ngay
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
 
                 <p className="text-center text-sm text-muted-foreground">
-                  No obligation • Free consultation
+                  Hoàn toàn miễn phí • Không ràng buộc
                 </p>
               </CardContent>
             </Card>
