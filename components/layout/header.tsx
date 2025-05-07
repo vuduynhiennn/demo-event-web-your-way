@@ -20,6 +20,7 @@ import Logo from "../ui/logo";
 
 const HeaderLinks = [
   { name: "Trang chủ", href: "/" },
+  { name: "Bài viết", href: "/bai-viet" },
   { name: "Ngành học", href: "/chuong-trinh-hoc" },
   { name: "Thư viện ảnh", href: "/thu-vien-anh" },
   { name: "Cảm nhận", href: "/cam-nhan-sinh-vien" },
