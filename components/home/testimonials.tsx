@@ -39,8 +39,7 @@ const testimonials: TestimonialType[] = [
     program: "Kế toán",
     quote:
       "Chương trình học tại Khoa Kinh tế giúp tôi phát triển kỹ năng chuyên môn và tự tin làm việc ngay sau khi tốt nghiệp.",
-    image:
-      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/static/sv1.jpg",
     videoId: "testimonial-lan",
     category: "kế toán",
   },
@@ -50,8 +49,7 @@ const testimonials: TestimonialType[] = [
     program: "Quản trị kinh doanh",
     quote:
       "Nhờ sự hướng dẫn tận tâm của giảng viên, tôi đã có nền tảng vững chắc để phát triển sự nghiệp quản lý.",
-    image:
-      "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/static/sv2.jpg",
     videoId: "testimonial-minh",
     category: "quản trị",
   },
@@ -61,43 +59,39 @@ const testimonials: TestimonialType[] = [
     program: "Thương mại điện tử",
     quote:
       "Kiến thức thực tiễn và kỹ năng công nghệ giúp tôi tự tin khởi nghiệp trong lĩnh vực kinh doanh số.",
-    image:
-      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    image: "/static/sv3.jpg",
     videoId: "testimonial-huong",
     category: "thương mại điện tử",
   },
   {
     id: 4,
-    name: "David Rodriguez",
-    program: "Creative Arts",
+    name: "Phạm Văn Đức",
+    program: "Nghệ thuật sáng tạo",
     quote:
-      "The mentorship I received in the Creative Arts program helped me develop my unique artistic voice. The facilities and resources available to students are exceptional.",
-    image:
-      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "Sự hướng dẫn tận tình mà tôi nhận được trong chương trình Nghệ thuật sáng tạo đã giúp tôi phát triển phong cách nghệ thuật độc đáo. Cơ sở vật chất và nguồn lực dành cho sinh viên thực sự xuất sắc.",
+    image: "/static/sv4.jpg",
     videoId: "testimonial-david",
-    category: "undergraduate",
+    category: "đại học",
   },
   {
     id: 5,
-    name: "Jennifer Williams",
-    program: "Biological Sciences",
+    name: "Nguyễn Thị Hồng",
+    program: "Khoa học sinh học",
     quote:
-      "The research opportunities in the Biological Sciences program gave me hands-on experience that was crucial for my career. The faculty support was outstanding.",
-    image:
-      "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "Các cơ hội nghiên cứu trong chương trình Khoa học sinh học đã cho tôi trải nghiệm thực tế vô cùng quan trọng cho sự nghiệp của tôi. Sự hỗ trợ từ giảng viên thật tuyệt vời.",
+    image: "/static/sv5.png",
     videoId: "testimonial-jennifer",
-    category: "graduate",
+    category: "sau đại học",
   },
   {
     id: 6,
-    name: "Marcus Taylor",
-    program: "Education & Teaching",
+    name: "Trần Minh Tuấn",
+    program: "Giáo dục & Giảng dạy",
     quote:
-      "The Education program's emphasis on practical teaching experience prepared me for the realities of the classroom. I graduated confident in my abilities to make a difference.",
-    image:
-      "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "Chương trình Giáo dục với trọng tâm vào kinh nghiệm giảng dạy thực tế đã chuẩn bị cho tôi sẵn sàng đối mặt với thực tế trong lớp học. Tôi tốt nghiệp với sự tự tin vào khả năng tạo nên sự khác biệt.",
+    image: "/static/svr6.jpg",
     videoId: "testimonial-marcus",
-    category: "professional",
+    category: "chuyên nghiệp",
   },
 ];
 
