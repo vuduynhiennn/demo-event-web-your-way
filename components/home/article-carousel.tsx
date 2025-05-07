@@ -26,10 +26,10 @@ export default function ArticleCarousel() {
     <div className="container w-full">
       <Carousel opts={{ align: "start" }} className="w-full">
         <CarouselContent className="-ml-2">
-          {articles.slice(0, 4).map((article) => (
+          {articles.map((article) => (
             <CarouselItem
               key={article.slug}
-              className="pl-2 w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 flex-shrink-0"
+              className="pl-2 basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex-shrink-0"
             >
               <div className="bg-card rounded-lg shadow-sm overflow-hidden flex flex-col h-full border hover:border-primary/50 transition-colors">
                 <div className="relative w-full h-40">
