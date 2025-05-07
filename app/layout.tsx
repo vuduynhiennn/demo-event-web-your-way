@@ -9,8 +9,8 @@ import PageWrapper from "@/components/layout/PageWrapper"; // Import the new wra
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Excellence Academy | World-Class Education",
-  description: "Enroll in our award-winning programs and transform your future",
+  title: "Trường Đại học Mở Hà Nội",
+  description: "Tuyển sinh 2025 trang web demo",
 };
 
 export default function RootLayout({
