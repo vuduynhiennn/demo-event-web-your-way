@@ -21,9 +21,9 @@ import Logo from "../ui/logo";
 const HeaderLinks = [
   { name: "Trang chủ", href: "/" },
   { name: "Ngành học", href: "/chuong-trinh-hoc" },
-  { name: "Thư viện ảnh", href: "/gallery" },
-  { name: "Cảm nhận", href: "/testimonials" },
-  { name: "Giới thiệu", href: "/about" },
+  { name: "Thư viện ảnh", href: "/thu-vien-anh" },
+  { name: "Cảm nhận", href: "/cam-nhan-sinh-vien" },
+  { name: "Giới thiệu", href: "/gioi-thieu" },
 ];
 
 export default function Header() {
@@ -104,7 +104,7 @@ export default function Header() {
                 ))}
                 <div className="mt-4">
                   <Button className="w-full" asChild>
-                    <Link href="/register">Đăng ký ngay</Link>
+                    <Link href="/dang-ky">Đăng ký ngay</Link>
                   </Button>
                 </div>
               </nav>
@@ -114,10 +114,10 @@ export default function Header() {
 
         <div className="hidden md:flex items-center gap-4">
           <Button asChild variant="outline">
-            <Link href="/consultation">Đặt lịch tư vấn</Link>
+            <Link href="/hen-tu-van">Đặt lịch tư vấn</Link>
           </Button>
           <Button asChild>
-            <Link href="/register">Đăng ký ngay</Link>
+            <Link href="/dang-ky">Đăng ký ngay</Link>
           </Button>
         </div>
       </div>

@@ -94,7 +94,7 @@ const Footer = () => {
           <ul className="space-y-2">
             <li>
               <Link
-                href="/about"
+                href="/gioi-thieu"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Giới thiệu
@@ -102,7 +102,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/gallery"
+                href="/thu-vien-anh"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Thư viện ảnh
@@ -110,7 +110,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/testimonials"
+                href="/cam-nhan-sinh-vien"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Cảm nhận sinh viên

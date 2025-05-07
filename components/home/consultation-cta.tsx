@@ -140,7 +140,7 @@ export default function ConsultationCTA() {
                 </div>
 
                 <Button size="lg" className="w-full group" asChild>
-                  <Link href="/consultation">
+                  <Link href="/hen-tu-van">
                     Đặt lịch ngay
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>

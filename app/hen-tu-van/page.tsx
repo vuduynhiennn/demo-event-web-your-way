@@ -5,86 +5,128 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { format, addDays, isPast, isWeekend } from "date-fns";
-import { CalendarIcon, Clock, Loader2, CheckCircle2, User, Video, Phone } from "lucide-react";
+import {
+  CalendarIcon,
+  Clock,
+  Loader2,
+  CheckCircle2,
+  User,
+  Video,
+  Phone,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "@/lib/motion";
+import Image from "next/image";
 
 const consultationSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
+  name: z.string().min(2, "Tên phải có ít ít nhất 2 ký tự"),
+  email: z.string().email("Vui lòng nhập địa chỉ email hợp lệ"),
+  phone: z.string().min(10, "Vui lòng nhập số điện thoại hợp lệ"),
   date: z.date({
-    required_error: "Please select a date for your consultation",
+    required_error: "Vui lòng chọn ngày cho buổi tư vấn của bạn",
   }),
-  time: z.string().min(1, "Please select a time"),
+  time: z.string().min(1, "Vui lòng chọn giờ"),
   format: z.enum(["inPerson", "virtual", "phone"], {
-    required_error: "Please select a consultation format",
+    required_error: "Vui lòng chọn hình thức tư vấn",
   }),
-  topic: z.string().min(1, "Please select a topic"),
+  topic: z.string().min(1, "Vui lòng chọn chủ đề"),
   notes: z.string().optional(),
 });
 
 const consultants = [
   {
     id: 1,
-    name: "Dr. Emily Chen",
-    role: "Academic Advisor",
-    specialty: "Undergraduate Programs",
-    image: "https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    bio: "Dr. Chen has over 15 years of experience in higher education advising, specializing in undergraduate programs and first-generation student support.",
+    name: "Tiến sĩ Emily Chen",
+    role: "Cố vấn Học thuật",
+    specialty: "Chương trình Đại học",
+    image:
+      "https://images.pexels.com/photos/5212317/pexels-photo-5212317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "Tiến sĩ Chen có hơn 15 năm kinh nghiệm trong tư vấn giáo dục đại học, chuyên về các chương trình đại học và hỗ trợ sinh viên thế hệ đầu tiên.",
   },
   {
     id: 2,
-    name: "Professor James Wilson",
-    role: "Program Director",
-    specialty: "Graduate Studies",
-    image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    bio: "Professor Wilson leads our graduate programs and can provide insight into research opportunities, career pathways, and advanced academic options.",
+    name: "Giáo sư James Wilson",
+    role: "Giám đốc Chương trình",
+    specialty: "Nghiên cứu Sau Đại học",
+    image:
+      "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "Giáo sư Wilson dẫn dắt các chương trình sau đại học của chúng tôi và có thể cung cấp thông tin về cơ hội nghiên cứu, con đường sự nghiệp và các lựa chọn học thuật nâng cao.",
   },
   {
     id: 3,
     name: "Maria Rodriguez",
-    role: "International Student Coordinator",
-    specialty: "International Programs",
-    image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    bio: "Maria specializes in supporting international students with their unique needs, from visa applications to cultural adaptation and academic success strategies.",
+    role: "Điều phối viên Sinh viên Quốc tế",
+    specialty: "Chương trình Quốc tế",
+    image:
+      "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "Maria chuyên hỗ trợ sinh viên quốc tế với các nhu cầu đặc thù của họ, từ đơn xin visa đến thích nghi văn hóa và các chiến lược thành công học tập.",
   },
   {
     id: 4,
     name: "David Thompson",
-    role: "Financial Aid Counselor",
-    specialty: "Scholarships & Financial Planning",
-    image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    bio: "David helps students navigate financial aid options, scholarship opportunities, and creating a sustainable financial plan for their education.",
+    role: "Cố vấn Hỗ trợ Tài chính",
+    specialty: "Học bổng & Kế hoạch Tài chính",
+    image:
+      "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "David giúp sinh viên tìm hiểu các lựa chọn hỗ trợ tài chính, cơ hội học bổng và lập kế hoạch tài chính bền vững cho việc học của họ.",
   },
 ];
 
 const timeSlots = [
-  "9:00 AM", "10:00 AM", "11:00 AM", 
-  "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"
+  "9:00 Sáng",
+  "10:00 Sáng",
+  "11:00 Sáng",
+  "1:00 Chiều",
+  "2:00 Chiều",
+  "3:00 Chiều",
+  "4:00 Chiều",
 ];
 
 const topics = [
-  "Program Information",
-  "Application Process",
-  "Financial Aid & Scholarships",
-  "International Student Requirements",
-  "Career Opportunities",
-  "Campus Life & Housing",
-  "Transfer Credits",
-  "Other",
+  "Thông tin Chương trình",
+  "Quy trình Ứng tuyển",
+  "Hỗ trợ Tài chính & Học bổng",
+  "Yêu cầu Sinh viên Quốc tế",
+  "Cơ hội Nghề nghiệp",
+  "Cuộc sống & Nhà ở trong Khuôn viên",
+  "Chuyển đổi Tín chỉ",
+  "Khác",
 ];
 
 export default function ConsultationPage() {
@@ -107,14 +149,14 @@ export default function ConsultationPage() {
   const onSubmit = async (data: z.infer<typeof consultationSchema>) => {
     try {
       setIsSubmitting(true);
-      
+
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      toast.success("Consultation scheduled successfully!");
+
+      toast.success("Đặt lịch tư vấn thành công!");
       setIsSubmitted(true);
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
+      toast.error("Đã xảy ra lỗi. Vui lòng thử lại.");
     } finally {
       setIsSubmitting(false);
     }
@@ -134,9 +176,12 @@ export default function ConsultationPage() {
         className="max-w-4xl mx-auto space-y-6"
       >
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Schedule a Consultation</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">
+            Đặt Lịch Tư Vấn
+          </h1>
           <p className="text-muted-foreground">
-            Get personalized guidance from our expert advisors to help you make informed decisions
+            Nhận hướng dẫn cá nhân hóa từ các cố vấn chuyên gia của chúng tôi để
+            giúp bạn đưa ra quyết định sáng suốt
           </p>
         </div>
 
@@ -144,11 +189,11 @@ export default function ConsultationPage() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="md:col-span-1">
               <div className="space-y-4 sticky top-20">
-                <h2 className="text-xl font-semibold">Our Consultants</h2>
+                <h2 className="text-xl font-semibold">Cố vấn của Chúng tôi</h2>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Select an advisor to schedule your consultation
+                  Chọn một cố vấn để đặt lịch tư vấn của bạn
                 </p>
-                
+
                 <div className="space-y-4">
                   {consultants.map((consultant) => (
                     <motion.div
@@ -157,11 +202,12 @@ export default function ConsultationPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: consultant.id * 0.1 }}
                     >
-                      <Card 
+                      <Card
                         className={cn(
                           "cursor-pointer transition-all hover:border-primary/50",
-                          selectedConsultant.id === consultant.id && "border-primary"
-                        )} 
+                          selectedConsultant.id === consultant.id &&
+                            "border-primary"
+                        )}
                         onClick={() => setSelectedConsultant(consultant)}
                       >
                         <CardContent className="p-4">
@@ -175,7 +221,9 @@ export default function ConsultationPage() {
                             </div>
                             <div>
                               <h3 className="font-medium">{consultant.name}</h3>
-                              <p className="text-xs text-muted-foreground">{consultant.specialty}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {consultant.specialty}
+                              </p>
                             </div>
                           </div>
                         </CardContent>
@@ -191,7 +239,7 @@ export default function ConsultationPage() {
                 <CardHeader>
                   <div className="flex items-center gap-4">
                     <div className="relative h-16 w-16 rounded-full overflow-hidden">
-                      <img
+                      <Image
                         src={selectedConsultant.image}
                         alt={selectedConsultant.name}
                         className="object-cover"
@@ -200,7 +248,8 @@ export default function ConsultationPage() {
                     <div>
                       <CardTitle>{selectedConsultant.name}</CardTitle>
                       <CardDescription>
-                        {selectedConsultant.role} • {selectedConsultant.specialty}
+                        {selectedConsultant.role} •{" "}
+                        {selectedConsultant.specialty}
                       </CardDescription>
                     </div>
                   </div>
@@ -209,20 +258,23 @@ export default function ConsultationPage() {
                   <p className="text-sm text-muted-foreground mb-6">
                     {selectedConsultant.bio}
                   </p>
-                  
+
                   <Separator className="my-6" />
-                  
+
                   <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <form
+                      onSubmit={form.handleSubmit(onSubmit)}
+                      className="space-y-6"
+                    >
                       <div className="grid md:grid-cols-2 gap-4">
                         <FormField
                           control={form.control}
                           name="name"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Your Name</FormLabel>
+                              <FormLabel>Tên của Bạn</FormLabel>
                               <FormControl>
-                                <Input placeholder="John Doe" {...field} />
+                                <Input placeholder="Nguyễn Văn A" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -233,37 +285,41 @@ export default function ConsultationPage() {
                           name="email"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Email Address</FormLabel>
+                              <FormLabel>Địa chỉ Email</FormLabel>
                               <FormControl>
-                                <Input type="email" placeholder="john.doe@example.com" {...field} />
+                                <Input
+                                  type="email"
+                                  placeholder="nguyen.van.a@example.com"
+                                  {...field}
+                                />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
                           )}
                         />
                       </div>
-                      
+
                       <FormField
                         control={form.control}
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Phone Number</FormLabel>
+                            <FormLabel>Số Điện thoại</FormLabel>
                             <FormControl>
-                              <Input placeholder="(555) 123-4567" {...field} />
+                              <Input placeholder="0123 456 789" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-                      
+
                       <div className="grid md:grid-cols-2 gap-4">
                         <FormField
                           control={form.control}
                           name="date"
                           render={({ field }) => (
                             <FormItem className="flex flex-col">
-                              <FormLabel>Consultation Date</FormLabel>
+                              <FormLabel>Ngày Tư vấn</FormLabel>
                               <Popover>
                                 <PopoverTrigger asChild>
                                   <FormControl>
@@ -277,13 +333,16 @@ export default function ConsultationPage() {
                                       {field.value ? (
                                         format(field.value, "PPP")
                                       ) : (
-                                        <span>Select a date</span>
+                                        <span>Chọn ngày</span>
                                       )}
                                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                     </Button>
                                   </FormControl>
                                 </PopoverTrigger>
-                                <PopoverContent className="w-auto p-0" align="start">
+                                <PopoverContent
+                                  className="w-auto p-0"
+                                  align="start"
+                                >
                                   <Calendar
                                     mode="single"
                                     selected={field.value}
@@ -299,17 +358,20 @@ export default function ConsultationPage() {
                             </FormItem>
                           )}
                         />
-                        
+
                         <FormField
                           control={form.control}
                           name="time"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Preferred Time</FormLabel>
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormLabel>Thời gian Ưa thích</FormLabel>
+                              <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                              >
                                 <FormControl>
                                   <SelectTrigger>
-                                    <SelectValue placeholder="Select a time" />
+                                    <SelectValue placeholder="Chọn giờ" />
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
@@ -325,13 +387,13 @@ export default function ConsultationPage() {
                           )}
                         />
                       </div>
-                      
+
                       <FormField
                         control={form.control}
                         name="format"
                         render={({ field }) => (
                           <FormItem className="space-y-3">
-                            <FormLabel>Consultation Format</FormLabel>
+                            <FormLabel>Hình thức Tư vấn</FormLabel>
                             <FormControl>
                               <RadioGroup
                                 onValueChange={field.onChange}
@@ -345,7 +407,7 @@ export default function ConsultationPage() {
                                   <div className="flex items-center gap-2">
                                     <User className="h-4 w-4 text-muted-foreground" />
                                     <FormLabel className="font-normal">
-                                      In-Person
+                                      Trực tiếp
                                     </FormLabel>
                                   </div>
                                 </FormItem>
@@ -356,7 +418,7 @@ export default function ConsultationPage() {
                                   <div className="flex items-center gap-2">
                                     <Video className="h-4 w-4 text-muted-foreground" />
                                     <FormLabel className="font-normal">
-                                      Virtual Meeting
+                                      Họp Trực tuyến
                                     </FormLabel>
                                   </div>
                                 </FormItem>
@@ -367,7 +429,7 @@ export default function ConsultationPage() {
                                   <div className="flex items-center gap-2">
                                     <Phone className="h-4 w-4 text-muted-foreground" />
                                     <FormLabel className="font-normal">
-                                      Phone Call
+                                      Gọi Điện thoại
                                     </FormLabel>
                                   </div>
                                 </FormItem>
@@ -377,17 +439,20 @@ export default function ConsultationPage() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={form.control}
                         name="topic"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Consultation Topic</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormLabel>Chủ đề Tư vấn</FormLabel>
+                            <Select
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                            >
                               <FormControl>
                                 <SelectTrigger>
-                                  <SelectValue placeholder="Select a topic" />
+                                  <SelectValue placeholder="Chọn chủ đề" />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
@@ -402,34 +467,37 @@ export default function ConsultationPage() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={form.control}
                         name="notes"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Additional Notes (Optional)</FormLabel>
+                            <FormLabel>Ghi chú Bổ sung (Tùy chọn)</FormLabel>
                             <FormControl>
-                              <Textarea 
-                                placeholder="Any specific questions or topics you'd like to discuss" 
-                                className="resize-none" 
-                                {...field} 
+                              <Textarea
+                                placeholder="Bất kỳ câu hỏi hoặc chủ đề cụ thể nào bạn muốn thảo luận"
+                                className="resize-none"
+                                {...field}
                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-                      
-                      <Button type="submit" className="w-full" disabled={isSubmitting}>
+
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isSubmitting}
+                      >
                         {isSubmitting ? (
                           <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Scheduling...
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />{" "}
+                            Đang Đặt lịch...
                           </>
                         ) : (
-                          <>
-                            Schedule Consultation
-                          </>
+                          <>Đặt Lịch Tư Vấn</>
                         )}
                       </Button>
                     </form>
@@ -449,9 +517,11 @@ export default function ConsultationPage() {
                 <div className="mx-auto mb-4">
                   <CheckCircle2 className="h-16 w-16 text-primary" />
                 </div>
-                <CardTitle className="text-2xl">Consultation Scheduled!</CardTitle>
+                <CardTitle className="text-2xl">
+                  Đặt Lịch Tư Vấn Thành Công!
+                </CardTitle>
                 <CardDescription>
-                  Your consultation has been successfully scheduled
+                  Buổi tư vấn của bạn đã được đặt lịch thành công
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -466,7 +536,9 @@ export default function ConsultationPage() {
                     </div>
                     <div className="text-left">
                       <p className="font-medium">{selectedConsultant.name}</p>
-                      <p className="text-xs text-muted-foreground">{selectedConsultant.specialty}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {selectedConsultant.specialty}
+                      </p>
                     </div>
                   </div>
                   <div className="space-y-2 text-left">
@@ -491,24 +563,31 @@ export default function ConsultationPage() {
                         <Phone className="h-4 w-4 text-muted-foreground" />
                       )}
                       <span className="text-sm">
-                        {form.getValues().format === "inPerson" && "In-Person"}
-                        {form.getValues().format === "virtual" && "Virtual Meeting"}
-                        {form.getValues().format === "phone" && "Phone Call"}
+                        {form.getValues().format === "inPerson" && "Trực tiếp"}
+                        {form.getValues().format === "virtual" &&
+                          "Họp Trực tuyến"}
+                        {form.getValues().format === "phone" &&
+                          "Gọi Điện thoại"}
                       </span>
                     </div>
                   </div>
                 </div>
-                
+
                 <p className="text-muted-foreground">
-                  We've sent a confirmation email to <strong>{form.getValues().email}</strong> with all the details.
+                  Chúng tôi đã gửi email xác nhận đến{" "}
+                  <strong>{form.getValues().email}</strong> với tất cả thông tin
+                  chi tiết.
                 </p>
               </CardContent>
               <CardFooter className="flex justify-center">
-                <Button variant="outline" onClick={() => {
-                  form.reset();
-                  setIsSubmitted(false);
-                }}>
-                  Schedule Another Consultation
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    form.reset();
+                    setIsSubmitted(false);
+                  }}
+                >
+                  Đặt Lịch Tư Vấn Khác
                 </Button>
               </CardFooter>
             </Card>

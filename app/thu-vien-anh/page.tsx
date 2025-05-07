@@ -3,11 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "@/lib/motion";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   {
@@ -55,12 +53,12 @@ type ImageType = {
   category: string;
 };
 
-export default function ImageGalleryPreview() {
+export default function ThuVienAnh() {
   const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
 
   return (
-    <section className="py-16 bg-background">
+    <main className="py-16 bg-background min-h-screen">
       <div className="container">
         <div className="flex flex-col items-center text-center mb-12">
           <motion.div
@@ -70,14 +68,14 @@ export default function ImageGalleryPreview() {
             viewport={{ once: true }}
           >
             <Badge variant="outline" className="mb-2">
-              Hoạt động sinh viên
+              Thư viện ảnh
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Khám phá không gian & hoạt động tại Khoa Kinh tế
-            </h2>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              Thư viện hình ảnh Đại học Mở Hà Nội
+            </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Hành trình hình ảnh về khuôn viên, sự kiện và hoạt động sinh viên
-              nổi bật.
+              Khám phá những khoảnh khắc đáng nhớ, không gian học tập hiện đại
+              và hoạt động sôi nổi của sinh viên HOU.
             </p>
           </motion.div>
         </div>
@@ -90,7 +88,7 @@ export default function ImageGalleryPreview() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className={`group overflow-hidden rounded-2xl shadow-lg relative bg-white`}
+              className="group overflow-hidden rounded-2xl shadow-lg relative bg-white"
             >
               <Dialog>
                 <DialogTrigger asChild>
@@ -160,16 +158,7 @@ export default function ImageGalleryPreview() {
             </motion.div>
           ))}
         </div>
-
-        <div className="flex justify-center mt-12">
-          <Button size="lg" variant="outline" className="group" asChild>
-            <Link href="/thu-vien-anh">
-              Xem toàn bộ thư viện ảnh
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
-        </div>
       </div>
-    </section>
+    </main>
   );
 }

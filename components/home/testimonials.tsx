@@ -21,6 +21,7 @@ import {
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Quote, Play } from "lucide-react";
 import { motion } from "@/lib/motion";
+import Link from "next/link";
 
 type TestimonialType = {
   id: number;
@@ -227,7 +228,7 @@ export default function Testimonials() {
 
         <div className="flex justify-center mt-12">
           <Button size="lg" variant="outline" asChild>
-            <a href="/testimonials">Xem tất cả cảm nhận</a>
+            <Link href="/cam-nhan-sinh-vien">Xem tất cả cảm nhận</Link>
           </Button>
         </div>
       </div>

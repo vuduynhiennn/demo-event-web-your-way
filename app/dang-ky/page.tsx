@@ -6,14 +6,40 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { ArrowLeft, ArrowRight, CheckCircle2, Calendar, Loader2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  Calendar,
+  Loader2,
+} from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { motion } from "@/lib/motion";
 
@@ -114,20 +140,24 @@ export default function RegisterPage() {
     setStep(2);
   };
 
-  const onProgramSelectionSubmit = (data: z.infer<typeof programSelectionSchema>) => {
+  const onProgramSelectionSubmit = (
+    data: z.infer<typeof programSelectionSchema>
+  ) => {
     setSavedData((prev) => ({ ...prev, ...data }));
     toast.success("Program selection saved!");
     setStep(3);
   };
 
-  const onAdditionalInfoSubmit = async (data: z.infer<typeof additionalInfoSchema>) => {
+  const onAdditionalInfoSubmit = async (
+    data: z.infer<typeof additionalInfoSchema>
+  ) => {
     try {
       setIsSubmitting(true);
       const formData = { ...savedData, ...data };
-      
+
       // Simulate form submission
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      
+
       toast.success("Application submitted successfully!");
       setStep(4);
     } catch (error) {
@@ -146,7 +176,9 @@ export default function RegisterPage() {
         className="max-w-4xl mx-auto space-y-6"
       >
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Apply to Excellence Academy</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">
+            Apply to Excellence Academy
+          </h1>
           <p className="text-muted-foreground">
             Fill out the form below to start your application process
           </p>
@@ -155,13 +187,25 @@ export default function RegisterPage() {
         <div className="mb-8">
           <Tabs value={String(step)} className="w-full">
             <TabsList className="grid grid-cols-4 w-full">
-              <TabsTrigger value="1" disabled={step < 1} onClick={() => step > 1 && setStep(1)}>
+              <TabsTrigger
+                value="1"
+                disabled={step < 1}
+                onClick={() => step > 1 && setStep(1)}
+              >
                 Personal Info
               </TabsTrigger>
-              <TabsTrigger value="2" disabled={step < 2} onClick={() => step > 2 && setStep(2)}>
+              <TabsTrigger
+                value="2"
+                disabled={step < 2}
+                onClick={() => step > 2 && setStep(2)}
+              >
                 Program Selection
               </TabsTrigger>
-              <TabsTrigger value="3" disabled={step < 3} onClick={() => step > 3 && setStep(3)}>
+              <TabsTrigger
+                value="3"
+                disabled={step < 3}
+                onClick={() => step > 3 && setStep(3)}
+              >
                 Additional Info
               </TabsTrigger>
               <TabsTrigger value="4" disabled={step < 4}>
@@ -185,7 +229,9 @@ export default function RegisterPage() {
                 </CardDescription>
               </CardHeader>
               <Form {...personalInfoForm}>
-                <form onSubmit={personalInfoForm.handleSubmit(onPersonalInfoSubmit)}>
+                <form
+                  onSubmit={personalInfoForm.handleSubmit(onPersonalInfoSubmit)}
+                >
                   <CardContent className="space-y-4">
                     <FormField
                       control={personalInfoForm.control}
@@ -208,7 +254,11 @@ export default function RegisterPage() {
                           <FormItem>
                             <FormLabel>Email Address</FormLabel>
                             <FormControl>
-                              <Input type="email" placeholder="john.doe@example.com" {...field} />
+                              <Input
+                                type="email"
+                                placeholder="john.doe@example.com"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -248,7 +298,10 @@ export default function RegisterPage() {
                         <FormItem>
                           <FormLabel>Address</FormLabel>
                           <FormControl>
-                            <Input placeholder="123 Main St, City, Country" {...field} />
+                            <Input
+                              placeholder="123 Main St, City, Country"
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -280,7 +333,11 @@ export default function RegisterPage() {
                 </CardDescription>
               </CardHeader>
               <Form {...programSelectionForm}>
-                <form onSubmit={programSelectionForm.handleSubmit(onProgramSelectionSubmit)}>
+                <form
+                  onSubmit={programSelectionForm.handleSubmit(
+                    onProgramSelectionSubmit
+                  )}
+                >
                   <CardContent className="space-y-4">
                     <FormField
                       control={programSelectionForm.control}
@@ -288,8 +345,8 @@ export default function RegisterPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Program of Interest</FormLabel>
-                          <Select 
-                            onValueChange={field.onChange} 
+                          <Select
+                            onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
@@ -315,8 +372,8 @@ export default function RegisterPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Preferred Start Date</FormLabel>
-                          <Select 
-                            onValueChange={field.onChange} 
+                          <Select
+                            onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
@@ -380,9 +437,9 @@ export default function RegisterPage() {
                     />
                   </CardContent>
                   <CardFooter className="flex justify-between">
-                    <Button 
-                      type="button" 
-                      variant="outline" 
+                    <Button
+                      type="button"
+                      variant="outline"
                       onClick={() => setStep(1)}
                     >
                       <ArrowLeft className="mr-2 h-4 w-4" /> Back
@@ -407,11 +464,16 @@ export default function RegisterPage() {
               <CardHeader>
                 <CardTitle>Additional Information</CardTitle>
                 <CardDescription>
-                  Please provide some additional details to complete your application
+                  Please provide some additional details to complete your
+                  application
                 </CardDescription>
               </CardHeader>
               <Form {...additionalInfoForm}>
-                <form onSubmit={additionalInfoForm.handleSubmit(onAdditionalInfoSubmit)}>
+                <form
+                  onSubmit={additionalInfoForm.handleSubmit(
+                    onAdditionalInfoSubmit
+                  )}
+                >
                   <CardContent className="space-y-4">
                     <FormField
                       control={additionalInfoForm.control}
@@ -419,8 +481,8 @@ export default function RegisterPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Highest Level of Education</FormLabel>
-                          <Select 
-                            onValueChange={field.onChange} 
+                          <Select
+                            onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
@@ -446,8 +508,8 @@ export default function RegisterPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>How did you hear about us?</FormLabel>
-                          <Select 
-                            onValueChange={field.onChange} 
+                          <Select
+                            onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
@@ -474,9 +536,9 @@ export default function RegisterPage() {
                         <FormItem>
                           <FormLabel>Additional Comments (Optional)</FormLabel>
                           <FormControl>
-                            <Input 
-                              placeholder="Any additional information you'd like to share" 
-                              {...field} 
+                            <Input
+                              placeholder="Any additional information you'd like to share"
+                              {...field}
                             />
                           </FormControl>
                           <FormMessage />
@@ -485,9 +547,9 @@ export default function RegisterPage() {
                     />
                   </CardContent>
                   <CardFooter className="flex justify-between">
-                    <Button 
-                      type="button" 
-                      variant="outline" 
+                    <Button
+                      type="button"
+                      variant="outline"
                       onClick={() => setStep(2)}
                     >
                       <ArrowLeft className="mr-2 h-4 w-4" /> Back
@@ -495,12 +557,11 @@ export default function RegisterPage() {
                     <Button type="submit" disabled={isSubmitting}>
                       {isSubmitting ? (
                         <>
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />{" "}
+                          Submitting...
                         </>
                       ) : (
-                        <>
-                          Submit Application
-                        </>
+                        <>Submit Application</>
                       )}
                     </Button>
                   </CardFooter>
@@ -521,25 +582,34 @@ export default function RegisterPage() {
                 <div className="mx-auto mb-4">
                   <CheckCircle2 className="h-16 w-16 text-primary" />
                 </div>
-                <CardTitle className="text-2xl">Application Submitted!</CardTitle>
+                <CardTitle className="text-2xl">
+                  Application Submitted!
+                </CardTitle>
                 <CardDescription>
                   Thank you for applying to Excellence Academy
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p>
-                  Your application has been successfully submitted. Our admissions team will review your information and contact you within 2-3 business days.
+                  Your application has been successfully submitted. Our
+                  admissions team will review your information and contact you
+                  within 2-3 business days.
                 </p>
                 <div className="bg-muted p-4 rounded-lg">
                   <p className="font-medium">Next Steps:</p>
                   <ul className="text-left mt-2 space-y-2">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Check your email for a confirmation of your application</span>
+                      <span>
+                        Check your email for a confirmation of your application
+                      </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span>Our admissions team will contact you to schedule an interview</span>
+                      <span>
+                        Our admissions team will contact you to schedule an
+                        interview
+                      </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
@@ -552,8 +622,8 @@ export default function RegisterPage() {
                 <Button variant="outline" onClick={() => router.push("/")}>
                   Return to Home
                 </Button>
-                <Button 
-                  onClick={() => router.push("/consultation")}
+                <Button
+                  onClick={() => router.push("/hen-tu-van")}
                   className="gap-2"
                 >
                   <Calendar className="h-4 w-4" />

@@ -45,7 +45,10 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Nơi chắp cánh tri thức, vững bước tương lai.
+                Trường Đại học Mở Hà Nội (HOU) - cơ sở giáo dục đại học công lập
+                hàng đầu tại Việt Nam với khẩu hiệu Mở cơ hội học tập cho mọi
+                người. Được thành lập năm 1993, trường đào tạo khoảng 35.000
+                sinh viên trên nhiều hệ và ngành học.
               </motion.p>
               <motion.div
                 className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -58,7 +61,7 @@ export default function Hero() {
                   asChild
                   className="text-lg uppercase font-semibold"
                 >
-                  <Link href="/register">Đăng ký ngay</Link>
+                  <Link href="/dang-ky">Đăng ký ngay</Link>
                 </Button>
                 <Button
                   size="lg"
