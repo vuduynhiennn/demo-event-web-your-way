@@ -157,7 +157,7 @@ export default function Testimonials() {
           </div>
         </Tabs>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {filteredTestimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
@@ -167,7 +167,7 @@ export default function Testimonials() {
               viewport={{ once: true }}
             >
               <Card className="h-full flex flex-col hover:shadow-md transition-shadow overflow-hidden">
-                <div className="relative h-60">
+                <div className="relative h-48 sm:h-60 w-full">
                   <Image
                     src={testimonial.image}
                     alt={testimonial.name}
@@ -179,24 +179,26 @@ export default function Testimonials() {
                       <Button
                         variant="outline"
                         size="icon"
-                        className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm hover:bg-background"
+                        className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-background/80 backdrop-blur-sm hover:bg-background"
                         onClick={() => setSelectedTestimonial(testimonial)}
                       >
                         <Play className="h-5 w-5" />
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px] md:max-w-[700px]">
+                    <DialogContent className="max-w-xs sm:max-w-[425px] md:max-w-[700px]">
                       <DialogHeader>
-                        <DialogTitle>Cảm nhận sinh viên</DialogTitle>
-                        <DialogDescription>
+                        <DialogTitle className="text-base sm:text-lg">
+                          Cảm nhận sinh viên
+                        </DialogTitle>
+                        <DialogDescription className="text-xs sm:text-sm">
                           {selectedTestimonial?.name} -{" "}
                           {selectedTestimonial?.program}
                         </DialogDescription>
                       </DialogHeader>
                       <div className="aspect-video bg-muted flex items-center justify-center">
-                        <div className="text-center p-8">
-                          <Play className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-                          <p className="text-muted-foreground">
+                        <div className="text-center p-4 sm:p-8">
+                          <Play className="h-8 w-8 sm:h-12 sm:w-12 mx-auto mb-2 sm:mb-4 text-muted-foreground" />
+                          <p className="text-muted-foreground text-xs sm:text-base">
                             Video cảm nhận sẽ được phát tại đây
                           </p>
                         </div>
@@ -204,22 +206,26 @@ export default function Testimonials() {
                     </DialogContent>
                   </Dialog>
                 </div>
-                <CardContent className="flex-1 pt-6">
-                  <div className="flex items-start mb-4">
-                    <Quote className="h-8 w-8 text-primary/40 mr-2 shrink-0 mt-1" />
-                    <CardDescription className="text-base">
+                <CardContent className="flex-1 pt-4 sm:pt-6">
+                  <div className="flex items-start mb-2 sm:mb-4">
+                    <Quote className="h-6 w-6 sm:h-8 sm:w-8 text-primary/40 mr-2 shrink-0 mt-1" />
+                    <CardDescription className="text-sm sm:text-base">
                       {testimonial.quote}
                     </CardDescription>
                   </div>
                 </CardContent>
-                <CardFooter className="border-t pt-4 flex justify-between items-center">
+                <CardFooter className="border-t pt-2 sm:pt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
                   <div>
-                    <p className="font-medium">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="font-medium text-sm sm:text-base">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       {testimonial.program}
                     </p>
                   </div>
-                  <Badge variant="secondary">{testimonial.category}</Badge>
+                  <Badge variant="secondary" className="text-xs sm:text-sm">
+                    {testimonial.category}
+                  </Badge>
                 </CardFooter>
               </Card>
             </motion.div>
