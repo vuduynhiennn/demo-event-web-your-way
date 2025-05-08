@@ -129,8 +129,8 @@ export default function Testimonials() {
           </motion.div>
         </div>
 
-        <Tabs defaultValue="all" className="w-full mb-8">
-          <div className="flex justify-center">
+        <Tabs defaultValue="all" className="w-full mb-8 hidden md:block">
+          <div className="flex justify-center flex-wrap gap-2">
             <TabsList>
               <TabsTrigger value="all" onClick={() => setCategory("all")}>
                 Tất cả
